@@ -35,7 +35,7 @@ jobs:
     - name: Build & Push Frontend Image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_TAG: latest
+        IMAGE_TAG: v${{ github.run_number }}
       run: |
         docker build -f frontend/Dockerfile -t $ECR_REGISTRY/${{ secrets.ECR_REPOSITORY_FRONTEND }}:$IMAGE_TAG frontend/
         docker push $ECR_REGISTRY/${{ secrets.ECR_REPOSITORY_FRONTEND }}:$IMAGE_TAG
